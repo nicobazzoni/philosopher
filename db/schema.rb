@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(version: 2021_08_23_041708) do
   create_table "philosophers", force: :cascade do |t|
     t.string "name"
     t.string "idea"
-    t.string "book"
     t.string "image"
+    t.integer "likes"
+    t.string "notes"
     t.bigint "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

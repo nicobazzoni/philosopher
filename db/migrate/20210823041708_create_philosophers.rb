@@ -3,8 +3,9 @@ class CreatePhilosophers < ActiveRecord::Migration[6.1]
     create_table :philosophers do |t|
       t.string :name
       t.string :idea
-      t.string :book
       t.string :image
+      t.integer :likes
+      t.string :notes
       t.belongs_to :team, null: false, foreign_key: true
 
       t.timestamps

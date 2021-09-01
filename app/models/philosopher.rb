@@ -4,7 +4,7 @@ class Philosopher < ApplicationRecord
 
 
   def team_name=(name)
-    self.team = Team.find_or_create_by(name: name)
+    self.team = team.find_or_create_by(name: name)
   end
 
   def team_name
