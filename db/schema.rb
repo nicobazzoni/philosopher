@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_041708) do
     t.string "image"
     t.integer "likes"
     t.string "notes"
-    t.bigint "team_id", null: false
+    t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_philosophers_on_team_id"

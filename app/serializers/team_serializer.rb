@@ -1,4 +1,4 @@
-class IdeaSerializer < ActiveModel::Serializer
+class TeamSerializer < ActiveModel::Serializer
   attributes :id, :name
   has_many :philosophers
 end

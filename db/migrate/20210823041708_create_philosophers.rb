@@ -6,7 +6,7 @@ class CreatePhilosophers < ActiveRecord::Migration[6.1]
       t.string :image
       t.integer :likes
       t.string :notes
-      t.belongs_to :team, null: false, foreign_key: true
+      t.belongs_to :team, foreign_key: true
 
       t.timestamps
     end

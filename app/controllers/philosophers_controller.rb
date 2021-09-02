@@ -25,7 +25,7 @@ class PhilosophersController < ApplicationController
       @philosopher.destroy
       render json: {message: "A philosopher has perished !"}
     end
-  
+
     private
   
     def set_philosopher
@@ -33,6 +33,6 @@ class PhilosophersController < ApplicationController
     end
   
     def philosopher_params
-      params.permit( :name,  :image, :idea, :book, :team_name)
+      params.permit( :name, :image, :idea, :likes, :notes, :team_name)
     end
 end
