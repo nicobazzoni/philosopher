@@ -10,4 +10,16 @@ class Philosopher < ApplicationRecord
   def team_name
     self.team.name
   end
+
+    # Set the task's favorite setting to true and save the task
+    def favorite!
+      self.favorite = true
+      self.save!
+    end
+  
+    # Set the task's favorite setting to false and save the task
+    def unfavorite!
+      self.favorite = false
+      self.save!
+    end
 end

@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 2021_08_23_041708) do
     t.string "name"
     t.string "idea"
     t.string "image"
-    t.integer "likes"
-    t.string "notes"
+    t.boolean "favorite", default: false
+    t.text "notes", default: ""
     t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

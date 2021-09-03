@@ -9,9 +9,9 @@ class PhilosophersController < ApplicationController
     def create
       philosopher = Philosopher.new(philosopher_params)
       if philosopher.save
-        render json: philosopher
+        render json: @philosopher
       else
-        render json: {error: Philosopher.errors.full_messages.to_sentence}, status: 400
+        render json: @philosopher, status: 400
       end
     end
   
@@ -26,6 +26,18 @@ class PhilosophersController < ApplicationController
       render json: {message: "A philosopher has perished !"}
     end
 
+    # def likes
+    #    if @philosopher.liked?
+    #     render json:  @philosopher.likes + 1)
+    #    end
+    # end
+  #   def favorite
+  #    if @philosopher.favorited? 
+  #    render json { ★ } class (with star)
+  #    else 
+  #   # render button without favorited class (without star)
+  #   end
+  # end
     private
   
     def set_philosopher
@@ -33,6 +45,6 @@ class PhilosophersController < ApplicationController
     end
   
     def philosopher_params
-      params.permit( :name, :image, :idea, :likes, :notes, :team_name)
+      params.require(:philosopher).permit(:id, :name, :image, :idea, :favorite, :notes, :team_name)
     end
 end
