@@ -19,19 +19,12 @@ ActiveRecord::Schema.define(version: 2021_08_23_041708) do
     t.string "name"
     t.string "idea"
     t.string "image"
+    t.string "section"
+    t.string "status"
     t.boolean "favorite", default: false
     t.text "notes", default: ""
-    t.bigint "team_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["team_id"], name: "index_philosophers_on_team_id"
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "philosophers", "teams"
 end

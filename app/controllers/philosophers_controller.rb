@@ -7,12 +7,15 @@ class PhilosophersController < ApplicationController
     end
   
     def create
-      philosopher = Philosopher.new(philosopher_params)
-      if philosopher.save
-        render json: @philosopher
-      else
-        render json: @philosopher, status: 400
-      end
+      philosopher = Philosopher.create(philosopher_params)
+      begin
+      philosopher.save
+        render json: philosopher
+      rescue ActiveRecord::RecordNotUnique => e
+      
+      return
+      
+    end
     end
   
   
@@ -45,6 +48,6 @@ class PhilosophersController < ApplicationController
     end
   
     def philosopher_params
-      params.require(:philosopher).permit(:id, :name, :image, :idea, :favorite, :notes, :team_name)
+      params.require(:philosopher).permit(:id, :name, :image, :idea, :favorite, :notes, :section)
     end
 end
