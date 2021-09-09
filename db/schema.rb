@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_041708) do
+ActiveRecord::Schema.define(version: 2021_09_08_212653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "philosophers", force: :cascade do |t|
     t.string "name"
-    t.string "idea"
     t.string "image"
-    t.string "section"
     t.string "status"
     t.boolean "favorite", default: false
     t.text "notes", default: ""
@@ -27,4 +25,14 @@ ActiveRecord::Schema.define(version: 2021_08_23_041708) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "thoughts", force: :cascade do |t|
+    t.string "idea"
+    t.string "category"
+    t.bigint "philosopher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["philosopher_id"], name: "index_thoughts_on_philosopher_id"
+  end
+
+  add_foreign_key "thoughts", "philosophers"
 end

@@ -2,20 +2,16 @@ class PhilosophersController < ApplicationController
     before_action :set_philosopher, only: [:update, :destroy]
 
     def index
-      philosophers = Philosopher.all.order(:name)
+      philosophers = Philosopher.all
       render json: philosophers
     end
   
     def create
       philosopher = Philosopher.create(philosopher_params)
-      begin
+   
       philosopher.save
         render json: philosopher
-      rescue ActiveRecord::RecordNotUnique => e
       
-      return
-      
-    end
     end
   
   
@@ -48,6 +44,6 @@ class PhilosophersController < ApplicationController
     end
   
     def philosopher_params
-      params.require(:philosopher).permit(:id, :name, :image, :idea, :favorite, :notes, :section)
+      params.require(:philosopher).permit(:id, :name, :image, :status, :favorite, :notes)
     end
 end
