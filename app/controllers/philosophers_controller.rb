@@ -1,5 +1,5 @@
 class PhilosophersController < ApplicationController
-    before_action :set_philosopher, only: [:update, :destroy]
+   before_action :set_philosopher, only: [:destroy]
 
     def index
       philosophers = Philosopher.all
@@ -9,7 +9,7 @@ class PhilosophersController < ApplicationController
     def create
       philosopher = Philosopher.create(philosopher_params)
    
-      philosopher.save
+     
         render json: philosopher
       
     end
@@ -21,6 +21,7 @@ class PhilosophersController < ApplicationController
     end
   
     def destroy
+    
       @philosopher.destroy
       render json: {message: "A philosopher has perished !"}
     end
@@ -44,6 +45,6 @@ class PhilosophersController < ApplicationController
     end
   
     def philosopher_params
-      params.require(:philosopher).permit(:id, :name, :image, :status, :favorite, :notes)
+      params.require(:philosopher).permit(:name, :image, :status, :category, :favorite, :notes, :user_id)
     end
 end
