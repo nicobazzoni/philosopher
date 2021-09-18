@@ -1,0 +1,3 @@
+class Drawing < ApplicationRecord
+  
+end

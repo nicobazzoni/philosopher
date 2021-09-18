@@ -20,3 +20,8 @@ nietzsche.thoughts.create(idea: "Favored perspectivism, which held that truth is
        Believed in the individual’s creative capacity to resist social norms and cultural convention in order to live according to a greater set of virtues.", category: "existentialism", philosopher: nietzsche)
        
 
+       10.times do
+              Todo.create(task: 'This is a seeded, default task')
+            end
+
+            puts 'ayoooo'

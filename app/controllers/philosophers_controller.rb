@@ -1,19 +1,17 @@
 class PhilosophersController < ApplicationController
    before_action :set_philosopher, only: [:destroy]
-
+  
     def index
       philosophers = Philosopher.all
       render json: philosophers
     end
-  
-    def create
-      philosopher = Philosopher.create(philosopher_params)
+  def create
+    philosopher = Philosopher.create(philosopher_params)
    
      
-        render json: philosopher
-      
-    end
-  
+    render json: philosopher
+
+  end  
   
     def update
       @philosopher.update(philosopher_params)
@@ -43,8 +41,12 @@ class PhilosophersController < ApplicationController
     def set_philosopher
       @philosopher = Philosopher.find(params[:id])
     end
+
+    def set_thought
+      @thought = Thought.find(params[:id])
+    end
   
     def philosopher_params
-      params.require(:philosopher).permit(:name, :image, :status, :category, :favorite, :notes, :user_id)
+      params.require(:philosopher).permit(:name, :image, :status, :favorite, :notes, :user_id, :thought_id, :thoughts_attributes =>[:idea,:category])
     end
 end
