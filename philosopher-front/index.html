@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosopher</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>👻Philosopher👻</h1>
+    <h2>Filter the movies by a scary category:</h2>
+    <p> Here's how we break down the categories here at 👻Boogle👻 (Thanks to Wikipedia!)
+        <br>
+        <li>Serial Killer🔪: Documentaries about real serial killers and fictional films about either real or fictional serial killers. </li>
+        <li>Thriller😨: Thrillers are characterized and defined by the moods they elicit, giving viewers heightened feelings of suspense, excitement, surprise, anticipation and anxiety.</li>
+        <li>Supernatural🧙‍♂️: Exploits or is centered on supernatural themes, often contradicting naturalist assumptions of the real world. </li>
+        <li>Sci-Fi🤖: Uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, interstellar travel or other technologies.</li>
+        <br>
+    </p>
+    <div class="container1">
+    <div id="branch-container"></div>
+
+ 
+    <br><br>
+    <h3> Check out our Boogle movies:</h3>
+    <ul id="philosophers"</ul>
+    </ul>
+
+    <br><br><br>
+    <h4> Do you want to add a spoooooky movie to Boogle?!👻
+        <br><br><br>
+    <form id="philosopher-form">
+        <label for="philosopher-dropdown">philosopher:</label>
+        <select name="philosopherId" id="philosopher-dropdown">
+        </select>
+        <br><br>
+        <label for="philosopher-name">name:</label>
+        <input type="text" name="name" id="philosopher-name">
+        <br><br>
+        <br><br><br>
+        <label for="philosopher-image">Image:</label>
+        <input type="image" image="image" id="philosopher-image"> 
+        
+        <br><br> 
+        
+        <label for="philosopher-idea">idea:</label>
+        <input type="text" idea="idea"  id="philosopher-idea" >
+        <br><br>
+        
+        <br><br>
+       
+        <input type="submit" value="Create philosopher">
+    </form>
+
+       <script src="src/branch.js" type="text/javascript"></script>
+       <script src="src/branchAdapter.js" type="text/javascript"></script>
+       <script src="src/philosopher.js" type="text/javascript"></script>
+       <script src="src/philosopherAdapter.js" type="text/javascript"></script>
+       <script src="src/index.js" type="text/javascript"></script>
+       <!-- index.js goes last because all of the classes need to be defined before index.js tries to do anything  -->
+       
+   </body>
+</html>

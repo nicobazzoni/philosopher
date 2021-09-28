@@ -1,52 +1,53 @@
-class PhilosophersController < ApplicationController
-   before_action :set_philosopher, only: [:destroy]
-  
+class  PhilosophersController < ApplicationController
+    before_action :set_philosopher, only: [:show, :update, :destroy]
+
+    # GET /philosophers
     def index
       philosophers = Philosopher.all
+  
       render json: philosophers
     end
-  def create
-    philosopher = Philosopher.create(philosopher_params)
-   
-     
-    render json: philosopher
-
-  end  
   
-    def update
-      @philosopher.update(philosopher_params)
+    # GET /philosophers/1
+    def show
       render json: @philosopher
     end
   
+    # POST /philosophers
+    def create
+      philosopher = Philosopher.new(philosopher_params)
+  
+      if philosopher.save
+        render json: philosopher, status: :created, location: philosopher
+      else
+        render json: philosopher.errors, status: :unprocessable_entity
+      end
+    end
+  
+    # PATCH/PUT /philosophers/1
+    def update
+      if @philosopher.update(philosopher_params)
+        render json: @philosopher
+      else
+        render json: @philosopher.errors, status: :unprocessable_entity
+      end
+    end
+  
+    # DELETE /philosophers/1
     def destroy
-    
       @philosopher.destroy
-      render json: {message: "A philosopher has perished !"}
+      render json: {message: "You deleted this philosopher."}
     end
-
-    # def likes
-    #    if @philosopher.liked?
-    #     render json:  @philosopher.likes + 1)
-    #    end
-    # end
-  #   def favorite
-  #    if @philosopher.favorited? 
-  #    render json { ★ } class (with star)
-  #    else 
-  #   # render button without favorited class (without star)
-  #   end
-  # end
+  
     private
+      # Use callbacks to share common setup or constraints between actions.
+      def set_philosopher
+        @philosopher = Philosopher.find(params[:id])
+      end
   
-    def set_philosopher
-      @philosopher = Philosopher.find(params[:id])
-    end
+      # Only allow a list of trusted parameters through.
+      def philosopher_params
+        params.require(:philosopher).permit(:name, :idea :image, :branch_id)
+      end
 
-    def set_thought
-      @thought = Thought.find(params[:id])
-    end
-  
-    def philosopher_params
-      params.require(:philosopher).permit(:name, :image, :status, :favorite, :notes, :user_id, :thought_id, :thoughts_attributes =>[:idea,:category])
-    end
 end

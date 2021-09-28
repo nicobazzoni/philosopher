@@ -1,10 +1,9 @@
+
 Rails.application.routes.draw do
- 
-  resources :drawings
-  resources :todos
- 
   resources :users
-  resources :philosophers
-  resources :thoughts
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :todos
+          resources :philosophers, only: [:index, :create, :destroy, :update]
+      resources :branches, only: [:index]
+      # I do not want others to delete categories 
+  
 end

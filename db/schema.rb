@@ -10,36 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_18_045242) do
+ActiveRecord::Schema.define(version: 2021_09_22_221952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "drawings", force: :cascade do |t|
-    t.string "sketch"
+  create_table "branches", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "philosophers", force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.string "status"
-    t.boolean "favorite", default: false
-    t.text "notes", default: ""
+    t.string "idea"
+    t.bigint "branch_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.index ["branch_id"], name: "index_philosophers_on_branch_id"
     t.index ["user_id"], name: "index_philosophers_on_user_id"
-  end
-
-  create_table "thoughts", force: :cascade do |t|
-    t.string "idea"
-    t.string "category"
-    t.bigint "philosopher_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["philosopher_id"], name: "index_thoughts_on_philosopher_id"
   end
 
   create_table "todos", force: :cascade do |t|
@@ -54,6 +45,6 @@ ActiveRecord::Schema.define(version: 2021_09_18_045242) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "philosophers", "branches"
   add_foreign_key "philosophers", "users"
-  add_foreign_key "thoughts", "philosophers"
 end
