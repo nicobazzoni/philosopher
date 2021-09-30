@@ -1,11 +1,10 @@
 class  PhilosophersController < ApplicationController
     before_action :set_philosopher, only: [:show, :update, :destroy]
-
+    before_action :set_branch, only: [:show, :update, :destroy]
     # GET /philosophers
     def index
       philosophers = Philosopher.all
-  
-      render json: philosophers
+      render json: @philosophers
     end
   
     # GET /philosophers/1
@@ -44,10 +43,12 @@ class  PhilosophersController < ApplicationController
       def set_philosopher
         @philosopher = Philosopher.find(params[:id])
       end
-  
+      def set_branch
+        branches = Branch.find(params[:id])
+      end
       # Only allow a list of trusted parameters through.
       def philosopher_params
-        params.require(:philosopher).permit(:name, :idea :image, :branch_id)
+        params.require(:philosopher).permit(:name, :idea, :image, :branch_id)
       end
 
 end
