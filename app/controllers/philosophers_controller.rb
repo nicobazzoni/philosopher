@@ -4,7 +4,7 @@ class  PhilosophersController < ApplicationController
     # GET /philosophers
     def index
       philosophers = Philosopher.all
-      render json: @philosophers
+      render json: philosophers, include: :branch
     end
   
     # GET /philosophers/1
@@ -14,10 +14,10 @@ class  PhilosophersController < ApplicationController
   
     # POST /philosophers
     def create
-      philosopher = Philosopher.new(philosopher_params)
+      philosopher = Philosopher.create(philosopher_params)
   
       if philosopher.save
-        render json: philosopher, status: :created, location: philosopher
+        render json: @philosopher 
       else
         render json: philosopher.errors, status: :unprocessable_entity
       end
@@ -48,7 +48,7 @@ class  PhilosophersController < ApplicationController
       end
       # Only allow a list of trusted parameters through.
       def philosopher_params
-        params.require(:philosopher).permit(:name, :idea, :image, :branch_id)
+        params.require(:philosopher).permit(:name, :idea, :image, :branch_id, :user_id)
       end
 
 end
